@@ -1,18 +1,9 @@
 defmodule Greetings do
-  @moduledoc """
-  Documentation for Greetings.
-  """
+  use Ace.HTTP.Service, cleartext: true
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Greetings.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def handle_request(_request, _state) do
+    response(:ok)
+    |> set_header("content-type", "text-plain")
+    |> set_body("Hello, World!")
   end
 end
