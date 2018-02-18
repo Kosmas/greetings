@@ -3,11 +3,11 @@ defmodule Greetings do
 
   def handle_request(
     %{method: :GET, path: []},
-    _state)
+    %{greeting: greeting})
   do
     response(:ok)
     |> set_header("content-type", "text/plain")
-    |> set_body("Hello, World!")
+    |> set_body("#{greeting},  World!")
   end
 
   def handle_request(
