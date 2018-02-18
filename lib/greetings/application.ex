@@ -7,9 +7,11 @@ defmodule Greetings.Application do
 
   def start(_type, _args) do
     # List all child processes to be supervised
+    greeting = System.get_env("GREETING") || "Hello"
+
     children = [
       # Starts a worker by calling: Greetings.Worker.start_link(arg)
-      # {Greetings.Worker, arg},
+      {Greetings, [%{greeting: greeting}, [port: 8080]]},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
